@@ -34,7 +34,7 @@ public class Main {
                 System.out.println("Please take your money, and have a great day!");
             }
             else {
-                throw new Exception ("That is not a vailid withdrawal amount");
+                throw new Exception ("That is not a valid withdrawal amount");
             }
         }
         else if (choice.equalsIgnoreCase("Cancel")) {
