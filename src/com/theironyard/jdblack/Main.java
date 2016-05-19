@@ -1,52 +1,26 @@
 package com.theironyard.jdblack;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
+
 
 public class Main {
     static Scanner scanner = new Scanner(System.in);
-
+    static Customer customer = new Customer();
     public static void main(String[] args) throws Exception {
         System.out.println("Welcome to Wells Fargo!");
-        System.out.println("What is your name?");
-        String name = Main.scanner.nextLine();
-        System.out.println("Good Day " + name + "!");
 
-        /*if (name.isEmpty()){
-            System.out.println("We're sorry.");
-            System.out.println("We do not recognize that name");
-        */
-        if (name.isEmpty()) {
-            throw new Exception("We do not recognize that name");
-        }
+        customer.enterName();
+        customer.makeChoice();
 
-        System.out.println("What would you like to do today? [Check Balance/Withdraw Funds/Cancel]");
-        String choice = Main.scanner.nextLine();
-        if (choice.equalsIgnoreCase("Check Balance")) {
-            System.out.println(":/ your balance is $100.");
-        }
-
-        else if (choice.equalsIgnoreCase("Cancel")) {
-            System.out.println("Thank you and please come again");
-        }
-        else if (choice.equalsIgnoreCase("Withdraw Funds")) {
-            System.out.println("How much would you like to withdraw today?");
-            String amount = Main.scanner.nextLine();
-
-            int numInt = Integer.valueOf(amount); //converts to an integer
-
-            if (numInt <= 100 && numInt >= 0 && (numInt ==20 || numInt ==40 || numInt ==60 || numInt ==80 || numInt ==100))
-                System.out.println("Please take your money, and have a great day!");
-
-        else {
-                if (numInt <= 100 && numInt>= 0 && (numInt !=20 || numInt !=40 || numInt !=60 || numInt !=80 || numInt !=100))
-                    System.out.println("We're sorry, funds are only dispersed in denominations of 20." + " Please choose a different amount.");
-
-                else {
-                    System.out.println("Please take your money and have a nice day");
-                }
-                    //throw new Exception("That is not a valid withdrawal amount");
-            }
-        }
     }
 }
 
+
+   /* HashMap<String, Double> customers = new HashMap<>();
+customers.put("Hodor", 1000.0);
+        customers.put("John S", 2000.0);
+        customers.put("Sansa", 0.0);
+        customers.put("Bran", 1500.0);
+        customers.put("Brianne", 10000.0); */
