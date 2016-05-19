@@ -16,29 +16,37 @@ public class Main {
             System.out.println("We do not recognize that name");
         */
         if (name.isEmpty()) {
-            throw new Exception ("We do not recognize that name");
+            throw new Exception("We do not recognize that name");
         }
 
         System.out.println("What would you like to do today? [Check Balance/Withdraw Funds/Cancel]");
         String choice = Main.scanner.nextLine();
-        if (choice.equalsIgnoreCase("Check Balance")){
+        if (choice.equalsIgnoreCase("Check Balance")) {
             System.out.println(":/ your balance is $100.");
         }
-        else if (choice.equalsIgnoreCase("Withdraw Funds")){
+
+        else if (choice.equalsIgnoreCase("Cancel")) {
+            System.out.println("Thank you and please come again");
+        }
+        else if (choice.equalsIgnoreCase("Withdraw Funds")) {
             System.out.println("How much would you like to withdraw today?");
             String amount = Main.scanner.nextLine();
 
             int numInt = Integer.valueOf(amount); //converts to an integer
 
-            if (numInt <= 100 && numInt >= 0) {
+            if (numInt <= 100 && numInt >= 0 && (numInt ==20 || numInt ==40 || numInt ==60 || numInt ==80 || numInt ==100))
                 System.out.println("Please take your money, and have a great day!");
+
+        else {
+                if (numInt <= 100 && numInt>= 0 && (numInt !=20 || numInt !=40 || numInt !=60 || numInt !=80 || numInt !=100))
+                    System.out.println("We're sorry, funds are only dispersed in denominations of 20." + " Please choose a different amount.");
+
+                else {
+                    System.out.println("Please take your money and have a nice day");
+                }
+                    //throw new Exception("That is not a valid withdrawal amount");
             }
-            else {
-                throw new Exception ("That is not a valid withdrawal amount");
-            }
-        }
-        else if (choice.equalsIgnoreCase("Cancel")) {
-            System.out.println("Thank you and please come again");
         }
     }
 }
+
