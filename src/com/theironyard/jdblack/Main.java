@@ -15,7 +15,7 @@ public class Main {
         while(true) {
 
             customer.enterName();
-
+            customer.makeChoice();
         }
     }
 }
