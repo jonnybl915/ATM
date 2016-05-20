@@ -28,7 +28,7 @@ public class Customer {
             System.out.println("Name not recognized, would you like to open an account? [Y/N]");
             String entry = Main.scanner.nextLine();
             if (entry.equalsIgnoreCase("Y")){
-                System.out.println("Great!" + name + "Your account has been created.");
+                System.out.println("Great " + name + ", Your account has been created.");
                 customers.put(name, 100.0);
             }
             else {
@@ -45,6 +45,7 @@ public class Customer {
             System.out.println("1. Check Balance");
             System.out.println("2. Withdraw Funds");
             System.out.println("3. Cancel");
+            System.out.println("4. Delete Account");
             choice = Main.scanner.nextLine();
             numInt = Integer.valueOf(choice);
             if (1 == numInt) {
@@ -64,6 +65,12 @@ public class Customer {
                 }
             }
             else if (numInt == 3) {
+                break;
+            }
+            else if (numInt == 4) {
+                customers.remove(name);
+                System.out.println("We're sorry to see you go " + name + ".");
+                System.out.println("Your account has been removed.");
                 break;
             }
             System.out.println("Would you like to complete another transaction? [Y/N]");
