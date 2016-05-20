@@ -31,7 +31,7 @@ public class Customer {
             String entry = Main.scanner.nextLine();
             if (entry.equalsIgnoreCase("Y")){
                 System.out.println("Great " + name + ", Your account has been created.");
-                customers.put(name, +100.0);
+                customers.put(name, +200.0);
             }
 
             else if (entry.equalsIgnoreCase("N")){
@@ -56,13 +56,15 @@ public class Customer {
             choice = Main.scanner.nextLine();
             numInt = Integer.valueOf(choice);
             if (1 == numInt) {
-                System.out.println("Your current account balance is " + customers.remove(name)); //***************************** needs to be corrected
+                System.out.println("Your current account balance is " + customers.get(name)); //***************************** needs to be corrected
 
             } else if (numInt == 2) {
                 System.out.println("How much would you like to withdraw today?");
                 String amount = Main.scanner.nextLine();
 
                 int numAmount = Integer.valueOf(amount); //converts to an integer
+
+                //double numAmount = customers.remove(name);
 
                 if (numAmount <= 100000 && numAmount >= 0)
                     System.out.println("Please take your money, and have a great day!");
@@ -75,9 +77,9 @@ public class Customer {
                 break;
             }
             else if (numInt == 4) {
-                customers.remove(name, balance);
                 System.out.println("We're sorry to see you go " + name + ".");
                 System.out.println("Your account has been removed.");
+                customers.remove(name);
                 break;
             }
             System.out.println("Would you like to complete another transaction? [Y/N]");
