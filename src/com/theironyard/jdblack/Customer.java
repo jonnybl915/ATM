@@ -11,7 +11,6 @@ import java.util.Scanner;
 public class Customer {
     String name;
     String choice;
-    HashMap<String, Double> customers;
     Double balance;
     Double amount;
 
@@ -23,7 +22,7 @@ public class Customer {
             throw new Exception("We do not recognize that name");
         }
 
-        if (customers.containsKey(name)){
+        if (Main.customers.containsKey(name)){
             System.out.println("Welcome, " + name);
         }
 
@@ -35,11 +34,11 @@ public class Customer {
                 System.out.println(" ");
                 System.out.println("The sign-up bonus amount of $200 has been deposited into your account!");
                 System.out.println(" ");
-                customers.put(name, +200.0);
+                Main.customers.put(name, +200.0);
             }
 
             else if (entry.equalsIgnoreCase("N")){
-                throw new Exception ("We're sorry we couldn't be of service today.");
+                System.out.println("We're sorry we couldn't be of service today.");
             }
 
             else {
@@ -61,14 +60,14 @@ public class Customer {
             choice = Main.scanner.nextLine();
             numInt = Integer.valueOf(choice);
             if (1 == numInt) {
-                System.out.println("Your current account balance is " + customers.get(name)); //**********
+                System.out.println("Your current account balance is " + Main.customers.get(name)); //**********
 
             } else if (numInt == 2) {
                 System.out.println("How much would you like to withdraw today?");
                 String amount = Main.scanner.nextLine();
                 double numAmount = Double.valueOf(amount);
 
-                while(!(numAmount <= customers.get(name) && numAmount >= 0)){
+                while(!(numAmount <= Main.customers.get(name) && numAmount >= 0)){
                     System.out.println("That is not a valid withdrawal amount.");
                     System.out.println("Please select a different amount.");
                     amount = Main.scanner.nextLine();
@@ -87,7 +86,7 @@ public class Customer {
                 System.out.println(" ");
                 System.out.println("Your account has been removed.");
                 System.out.println(" ");
-                customers.remove(name);
+                Main.customers.remove(name);
                 break;
             }
             System.out.println("Would you like to complete another transaction? [Y/N]");
@@ -98,13 +97,13 @@ public class Customer {
         }
         System.out.println("Thank you and please come again");
     }
-    public void makeAccount () {
-        customers = new HashMap<>();
-        customers.put("Hodor", 1000.0);
-        customers.put("John S", 2000.0);
-        customers.put("Sansa", 0.0);
-        customers.put("Bran", 1500.0);
-        customers.put("Brianne", 10000.0);
+    public static void makeAccount () {
+        Main.customers = new HashMap<>();
+        Main.customers.put("Hodor", 1000.0);
+        Main.customers.put("John S", 2000.0);
+        Main.customers.put("Sansa", 0.0);
+        Main.customers.put("Bran", 1500.0);
+        Main.customers.put("Brianne", 10000.0);
     }
     //public void setAccountBalance () {
       //  balance = new double
