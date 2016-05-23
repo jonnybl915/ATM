@@ -13,6 +13,7 @@ public class Customer {
     String choice;
     HashMap<String, Double> customers;
     Double balance;
+    Double amount;
 
     public void enterName() throws Exception {
         System.out.println("Welcome to Wells Fargo!");
@@ -31,6 +32,9 @@ public class Customer {
             String entry = Main.scanner.nextLine();
             if (entry.equalsIgnoreCase("Y")){
                 System.out.println("Great " + name + ", Your account has been created.");
+                System.out.println(" ");
+                System.out.println("The sign-up bonus amount of $200 has been deposited into your account!");
+                System.out.println(" ");
                 customers.put(name, +200.0);
             }
 
@@ -46,6 +50,7 @@ public class Customer {
 
     public void makeChoice() throws Exception {
         System.out.println("What would you like to do today?");
+        System.out.println(" ");
         int numInt = 2;
         while (numInt != 3) {
             System.out.println("Select the number that correlates to the desired function.");
@@ -56,29 +61,32 @@ public class Customer {
             choice = Main.scanner.nextLine();
             numInt = Integer.valueOf(choice);
             if (1 == numInt) {
-                System.out.println("Your current account balance is " + customers.get(name)); //***************************** needs to be corrected
+                System.out.println("Your current account balance is " + customers.get(name)); //**********
 
             } else if (numInt == 2) {
                 System.out.println("How much would you like to withdraw today?");
                 String amount = Main.scanner.nextLine();
+                double numAmount = Double.valueOf(amount);
 
-                int numAmount = Integer.valueOf(amount); //converts to an integer
+                while(!(numAmount <= customers.get(name) && numAmount >= 0)){
+                    System.out.println("That is not a valid withdrawal amount.");
+                    System.out.println("Please select a different amount.");
+                    amount = Main.scanner.nextLine();
+                    numAmount = Double.valueOf(amount);
 
-                //double numAmount = customers.remove(name);
-
-                if (numAmount <= 100000 && numAmount >= 0)
-                    System.out.println("Please take your money, and have a great day!");
-
-                else {
-                    throw new Exception("That is not a valid withdrawal amount");
                 }
+                System.out.println("Please remove your money.");
+               // double newNumAmount = new double
+
             }
             else if (numInt == 3) {
                 break;
             }
             else if (numInt == 4) {
                 System.out.println("We're sorry to see you go " + name + ".");
+                System.out.println(" ");
                 System.out.println("Your account has been removed.");
+                System.out.println(" ");
                 customers.remove(name);
                 break;
             }
@@ -99,7 +107,7 @@ public class Customer {
         customers.put("Brianne", 10000.0);
     }
     //public void setAccountBalance () {
-      //  balance = new double;
+      //  balance = new double
 
     //}
 }
