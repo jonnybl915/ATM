@@ -6,7 +6,6 @@ import com.theironyard.jdblack.Main;
  * Created by jonathandavidblack on 5/18/16.
  */
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class Customer {
     String name;
@@ -18,6 +17,7 @@ public class Customer {
         System.out.println("Welcome to Wells Fargo!");
         System.out.println("What is your name?");
         name = Main.scanner.nextLine(); //need to store it in a variable,
+
         if (name.isEmpty()) {
             throw new Exception("We do not recognize that name");
         }
@@ -34,7 +34,7 @@ public class Customer {
                 System.out.println(" ");
                 System.out.println("The sign-up bonus amount of $200 has been deposited into your account!");
                 System.out.println(" ");
-                Main.customers.put(name, +200.0);
+                Main.customers.put(name, 200.0);
             }
 
             else if (entry.equalsIgnoreCase("N")){
@@ -66,6 +66,8 @@ public class Customer {
                 System.out.println("How much would you like to withdraw today?");
                 String amount = Main.scanner.nextLine();
                 double numAmount = Double.valueOf(amount);
+                double newNumAmount = ((Main.customers.get(name)) - numAmount);
+                Main.customers.put(name, newNumAmount);
 
                 while(!(numAmount <= Main.customers.get(name) && numAmount >= 0)){
                     System.out.println("That is not a valid withdrawal amount.");

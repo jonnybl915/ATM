@@ -8,6 +8,7 @@ public class Main {
     static Scanner scanner = new Scanner(System.in);
     static HashMap<String, Double> customers;
     static Customer customer = new Customer();
+
     public static void main(String[] args) throws Exception {
 
             customer.makeAccount();
