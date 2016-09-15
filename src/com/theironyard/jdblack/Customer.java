@@ -13,6 +13,11 @@ public class Customer {
     Double balance;
     Double amount;
 
+    public Customer(String name, String choice) {
+        this.name = name;
+        this.choice = choice;
+    }
+
     public void enterName() throws Exception {
         System.out.println("Welcome to Wells Fargo!");
         System.out.println("What is your name?");
@@ -50,7 +55,7 @@ public class Customer {
     public void makeChoice() throws Exception {
         System.out.println("What would you like to do today?");
         System.out.println(" ");
-        int numInt = 2;
+        int numInt = 0;
         while (numInt != 3) {
             System.out.println("Select the number that correlates to the desired function.");
             System.out.println("1. Check Balance");
@@ -59,8 +64,9 @@ public class Customer {
             System.out.println("4. Delete Account");
             choice = Main.scanner.nextLine();
             numInt = Integer.valueOf(choice);
-            if (1 == numInt) {
-                System.out.println("Your current account balance is " + Main.customers.get(name)); //**********
+
+            if (numInt == 1) {
+                System.out.println("Your current account balance is " + Main.customers.get(name));
 
             } else if (numInt == 2) {
                 System.out.println("How much would you like to withdraw today?");
@@ -68,21 +74,33 @@ public class Customer {
                 double numAmount = Double.valueOf(amount);
                 double newNumAmount = ((Main.customers.get(name)) - numAmount);
                 Main.customers.put(name, newNumAmount);
+                System.out.println(Main.customers.get(name));
 
-                while(!(numAmount <= Main.customers.get(name) && numAmount >= 0)){
-                    System.out.println("That is not a valid withdrawal amount.");
-                    System.out.println("Please select a different amount.");
-                    amount = Main.scanner.nextLine();
-                    numAmount = Double.valueOf(amount);
-
+                if(((Main.customers.get(name)) - numAmount) < 0) {
+                    throw new Exception("Sorry Brother");
                 }
+                else {
+                    Main.customers.put(name, newNumAmount);
+                }
+
+//                while(!(numAmount < Main.customers.get(name) && numAmount >= 0)) {
+//                    System.out.println("That is not a valid withdrawal amount.");
+//                    System.out.println("Please select a different amount.");
+//                    String amount2 = Main.scanner.nextLine();
+//                    double numAmount2 = Double.valueOf(amount2);
+//                    double newNewNumAmount = ((Main.customers.get(name)) - numAmount2);
+//                    Main.customers.put(name, newNewNumAmount);
+//
+//                }
                 System.out.println("Please remove your money.");
                // double newNumAmount = new double
 
             }
+
             else if (numInt == 3) {
                 break;
             }
+
             else if (numInt == 4) {
                 System.out.println("We're sorry to see you go " + name + ".");
                 System.out.println(" ");
@@ -107,10 +125,7 @@ public class Customer {
         Main.customers.put("Bran", 1500.0);
         Main.customers.put("Brianne", 10000.0);
     }
-    //public void setAccountBalance () {
-      //  balance = new double
 
-    //}
 }
 
 
