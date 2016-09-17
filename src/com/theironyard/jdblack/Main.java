@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Main {
     static Scanner scanner = new Scanner(System.in);
     static HashMap<String, Double> customers;
-    static Customer customer = new Customer();
+    static Customer customer;
 
     public static void main(String[] args) throws Exception {
 
